@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 // 
 // All rights reserved.
 // 
@@ -906,7 +906,7 @@ TEST(Serialization, portability_outputs)
 #define UNSIGNED_TX_PREFIX "Monero unsigned tx set\003"
 TEST(Serialization, portability_unsigned_tx)
 {
-  const string filename = epee::string_tools::get_current_module_folder() + "/../../../../tests/data/unsigned_monero_tx";
+  const string filename = epee::string_tools::get_current_module_folder() + "/../../../../tests/data/unsigned_ARGENTUM_tx";
   std::string s;
   const bool testnet = true;
   bool r = epee::file_io_utils::load_file_to_string(filename, s);
@@ -1054,7 +1054,7 @@ TEST(Serialization, portability_unsigned_tx)
 #define SIGNED_TX_PREFIX "Monero signed tx set\003"
 TEST(Serialization, portability_signed_tx)
 {
-  const string filename = epee::string_tools::get_current_module_folder() + "/../../../../tests/data/signed_monero_tx";
+  const string filename = epee::string_tools::get_current_module_folder() + "/../../../../tests/data/signed_ARGENTUM_tx";
   const bool testnet = true;
   std::string s;
   bool r = epee::file_io_utils::load_file_to_string(filename, s);
