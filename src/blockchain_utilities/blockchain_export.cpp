@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 //
 // All rights reserved.
 //
@@ -34,8 +34,8 @@
 #include "blockchain_db/db_types.h"
 #include "version.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "bcutil"
+#undef ARGENTUM_DEFAULT_LOG_CATEGORY
+#define ARGENTUM_DEFAULT_LOG_CATEGORY "bcutil"
 
 namespace po = boost::program_options;
 using namespace epee;
@@ -103,12 +103,12 @@ int main(int argc, char* argv[])
 
   if (command_line::get_arg(vm, command_line::arg_help))
   {
-    std::cout << "Monero '" << MONERO_RELEASE_NAME << "' (v" << MONERO_VERSION_FULL << ")" << ENDL << ENDL;
+    std::cout << "Argentum '" << ARGENTUM_RELEASE_NAME << "' (v" << ARGENTUM_VERSION_FULL << ")" << ENDL << ENDL;
     std::cout << desc_options << std::endl;
     return 1;
   }
 
-  mlog_configure(mlog_get_default_log_path("monero-blockchain-export.log"), true);
+  mlog_configure(mlog_get_default_log_path("argentum-blockchain-export.log"), true);
   if (!vm["log-level"].defaulted())
     mlog_set_log(command_line::get_arg(vm, arg_log_level).c_str());
   else

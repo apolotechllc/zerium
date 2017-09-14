@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 // 
 // All rights reserved.
 // 
@@ -59,8 +59,8 @@
 
 #include <iostream>
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "wallet.wallet2"
+#undef ARGENTUM_DEFAULT_LOG_CATEGORY
+#define ARGENTUM_DEFAULT_LOG_CATEGORY "wallet.wallet2"
 
 class Serialization_portability_wallet_Test;
 

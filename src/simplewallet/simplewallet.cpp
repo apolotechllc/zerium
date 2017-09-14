@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 // 
 // All rights reserved.
 // 
@@ -74,14 +74,14 @@ using boost::lexical_cast;
 namespace po = boost::program_options;
 typedef cryptonote::simple_wallet sw;
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "wallet.simplewallet"
+#undef ARGENTUM_DEFAULT_LOG_CATEGORY
+#define ARGENTUM_DEFAULT_LOG_CATEGORY "wallet.simplewallet"
 
 #define EXTENDED_LOGS_FILE "wallet_details.log"
 
 #define DEFAULT_MIX 4
 
-#define OUTPUT_EXPORT_FILE_MAGIC "Monero output export\003"
+#define OUTPUT_EXPORT_FILE_MAGIC "Argentum output export\003"
 
 #define LOCK_IDLE_SCOPE() \
   bool auto_refresh_enabled = m_auto_refresh_enabled.load(std::memory_order_relaxed); \
@@ -234,7 +234,7 @@ namespace
     std::stringstream prompt;
     prompt << tr("For URL: ") << url
            << ", " << dnssec_str << std::endl
-           << tr(" Monero Address = ") << addresses[0]
+           << tr(" Argentum Address = ") << addresses[0]
            << std::endl
            << tr("Is this OK? (Y/n) ")
     ;
@@ -400,7 +400,7 @@ bool simple_wallet::print_fee_info(const std::vector<std::string> &args/* = std:
   }
   const uint64_t per_kb_fee = m_wallet->get_per_kb_fee();
   const uint64_t typical_size_kb = 13;
-  message_writer() << (boost::format(tr("Current fee is %s monero per kB")) % print_money(per_kb_fee)).str();
+  message_writer() << (boost::format(tr("Current fee is %s argentum per kB")) % print_money(per_kb_fee)).str();
 
   std::vector<uint64_t> fees;
   for (uint32_t priority = 1; priority <= 4; ++priority)
@@ -633,15 +633,15 @@ bool simple_wallet::set_unit(const std::vector<std::string> &args/* = std::vecto
   const std::string &unit = args[1];
   unsigned int decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT;
 
-  if (unit == "monero")
+  if (unit == "argentum")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT;
-  else if (unit == "millinero")
+  else if (unit == "millium")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 3;
-  else if (unit == "micronero")
+  else if (unit == "microum")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 6;
-  else if (unit == "nanonero")
+  else if (unit == "nanoum")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 9;
-  else if (unit == "piconero")
+  else if (unit == "picoum")
     decimal_point = 0;
   else
   {
@@ -744,7 +744,7 @@ simple_wallet::simple_wallet()
   m_cmd_binder.set_handler("sweep_unmixable", boost::bind(&simple_wallet::sweep_unmixable, this, _1), tr("Send all unmixable outputs to yourself with ring_size 1"));
   m_cmd_binder.set_handler("sweep_all", boost::bind(&simple_wallet::sweep_all, this, _1), tr("sweep_all [ring_size] address [payment_id] - Send all unlocked balance to an address"));
   m_cmd_binder.set_handler("sweep_below", boost::bind(&simple_wallet::sweep_below, this, _1), tr("sweep_below <amount_threshold> [ring_size] address [payment_id] - Send all unlocked outputs below the threshold to an address"));
-  m_cmd_binder.set_handler("donate", boost::bind(&simple_wallet::donate, this, _1), tr("donate [<ring_size>] <amount> [payment_id] - Donate <amount> to the development team (donate.getmonero.org)"));
+  m_cmd_binder.set_handler("donate", boost::bind(&simple_wallet::donate, this, _1), tr("donate [<ring_size>] <amount> [payment_id] - Donate <amount> to the development team (donate.argentum.org)"));
   m_cmd_binder.set_handler("sign_transfer", boost::bind(&simple_wallet::sign_transfer, this, _1), tr("Sign a transaction from a file"));
   m_cmd_binder.set_handler("submit_transfer", boost::bind(&simple_wallet::submit_transfer, this, _1), tr("Submit a signed transaction from a file"));
   m_cmd_binder.set_handler("set_log", boost::bind(&simple_wallet::set_log, this, _1), tr("set_log <level>|<categories> - Change current log detail (level must be <0-4>)"));
@@ -756,7 +756,7 @@ simple_wallet::simple_wallet()
   m_cmd_binder.set_handler("viewkey", boost::bind(&simple_wallet::viewkey, this, _1), tr("Display private view key"));
   m_cmd_binder.set_handler("spendkey", boost::bind(&simple_wallet::spendkey, this, _1), tr("Display private spend key"));
   m_cmd_binder.set_handler("seed", boost::bind(&simple_wallet::seed, this, _1), tr("Display Electrum-style mnemonic seed"));
-  m_cmd_binder.set_handler("set", boost::bind(&simple_wallet::set_variable, this, _1), tr("Available options: seed language - set wallet seed language; always-confirm-transfers <1|0> - whether to confirm unsplit txes; print-ring-members <1|0> - whether to print detailed information about ring members during confirmation; store-tx-info <1|0> - whether to store outgoing tx info (destination address, payment ID, tx secret key) for future reference; default-ring-size <n> - set default ring size (default is 5); auto-refresh <1|0> - whether to automatically sync new blocks from the daemon; refresh-type <full|optimize-coinbase|no-coinbase|default> - set wallet refresh behaviour; priority [0|1|2|3|4] - default/unimportant/normal/elevated/priority fee; confirm-missing-payment-id <1|0>; ask-password <1|0>; unit <monero|millinero|micronero|nanonero|piconero> - set default monero (sub-)unit; min-outputs-count [n] - try to keep at least that many outputs of value at least min-outputs-value; min-outputs-value [n] - try to keep at least min-outputs-count outputs of at least that value; merge-destinations <1|0> - whether to merge multiple payments to the same destination address; confirm-backlog <1|0> - whether to warn if there is transaction backlog"));
+  m_cmd_binder.set_handler("set", boost::bind(&simple_wallet::set_variable, this, _1), tr("Available options: seed language - set wallet seed language; always-confirm-transfers <1|0> - whether to confirm unsplit txes; print-ring-members <1|0> - whether to print detailed information about ring members during confirmation; store-tx-info <1|0> - whether to store outgoing tx info (destination address, payment ID, tx secret key) for future reference; default-ring-size <n> - set default ring size (default is 5); auto-refresh <1|0> - whether to automatically sync new blocks from the daemon; refresh-type <full|optimize-coinbase|no-coinbase|default> - set wallet refresh behaviour; priority [0|1|2|3|4] - default/unimportant/normal/elevated/priority fee; confirm-missing-payment-id <1|0>; ask-password <1|0>; unit <argentum|millinero|micronero|nanonero|piconero> - set default argentum (sub-)unit; min-outputs-count [n] - try to keep at least that many outputs of value at least min-outputs-value; min-outputs-value [n] - try to keep at least min-outputs-count outputs of at least that value; merge-destinations <1|0> - whether to merge multiple payments to the same destination address; confirm-backlog <1|0> - whether to warn if there is transaction backlog"));
   m_cmd_binder.set_handler("rescan_spent", boost::bind(&simple_wallet::rescan_spent, this, _1), tr("Rescan blockchain for spent outputs"));
   m_cmd_binder.set_handler("get_tx_key", boost::bind(&simple_wallet::get_tx_key, this, _1), tr("Get transaction key (r) for a given <txid>"));
   m_cmd_binder.set_handler("check_tx_key", boost::bind(&simple_wallet::check_tx_key, this, _1), tr("Check amount going to <address> in <txid>"));
@@ -841,7 +841,7 @@ bool simple_wallet::set_variable(const std::vector<std::string> &args)
     CHECK_SIMPLE_VARIABLE("priority", set_default_priority, tr("0, 1, 2, 3, or 4"));
     CHECK_SIMPLE_VARIABLE("confirm-missing-payment-id", set_confirm_missing_payment_id, tr("0 or 1"));
     CHECK_SIMPLE_VARIABLE("ask-password", set_ask_password, tr("0 or 1"));
-    CHECK_SIMPLE_VARIABLE("unit", set_unit, tr("monero, millinero, micronero, nanonero, piconero"));
+    CHECK_SIMPLE_VARIABLE("unit", set_unit, tr("argentum, millinero, micronero, nanonero, piconero"));
     CHECK_SIMPLE_VARIABLE("min-outputs-count", set_min_output_count, tr("unsigned integer"));
     CHECK_SIMPLE_VARIABLE("min-outputs-value", set_min_output_value, tr("amount"));
     CHECK_SIMPLE_VARIABLE("merge-destinations", set_merge_destinations, tr("0 or 1"));
@@ -1578,7 +1578,7 @@ bool simple_wallet::new_wallet(const boost::program_options::variables_map& vm,
     tr("Your wallet has been generated!\n"
     "To start synchronizing with the daemon, use \"refresh\" command.\n"
     "Use \"help\" command to see the list of available commands.\n"
-    "Always use \"exit\" command when closing monero-wallet-cli to save your\n"
+    "Always use \"exit\" command when closing argentum-wallet-cli to save your\n"
     "current session's state. Otherwise, you might need to synchronize \n"
     "your wallet again (your wallet keys are NOT at risk in any case).\n")
   ;
@@ -2271,7 +2271,7 @@ bool simple_wallet::print_ring_members(const std::vector<tools::wallet2::pending
         ostr << tr(j == source.real_output ? " *" : " ") << res.outs[j].height;
       spent_key_height[i] = res.outs[source.real_output].height;
       spent_key_txid  [i] = res.outs[source.real_output].txid;
-      // visualize the distribution, using the code by moneroexamples onion-monero-viewer
+      // visualize the distribution, using the code by argentumexamples onion-argentum-viewer
       const uint64_t resolution = 79;
       std::string ring_str(resolution, '_');
       for (size_t j = 0; j < absolute_offsets.size(); ++j)
@@ -2611,14 +2611,14 @@ bool simple_wallet::transfer_main(int transfer_type, const std::vector<std::stri
     // actually commit the transactions
     if (m_wallet->watch_only())
     {
-      bool r = m_wallet->save_tx(ptx_vector, "unsigned_monero_tx");
+      bool r = m_wallet->save_tx(ptx_vector, "unsigned_argentum_tx");
       if (!r)
       {
         fail_msg_writer() << tr("Failed to write transaction(s) to file");
       }
       else
       {
-        success_msg_writer(true) << tr("Unsigned transaction(s) successfully written to file: ") << "unsigned_monero_tx";
+        success_msg_writer(true) << tr("Unsigned transaction(s) successfully written to file: ") << "unsigned_argentum_tx";
       }
     }
     else while (!ptx_vector.empty())
@@ -2789,14 +2789,14 @@ bool simple_wallet::sweep_unmixable(const std::vector<std::string> &args_)
     // actually commit the transactions
     if (m_wallet->watch_only())
     {
-      bool r = m_wallet->save_tx(ptx_vector, "unsigned_monero_tx");
+      bool r = m_wallet->save_tx(ptx_vector, "unsigned_argentum_tx");
       if (!r)
       {
         fail_msg_writer() << tr("Failed to write transaction(s) to file");
       }
       else
       {
-        success_msg_writer(true) << tr("Unsigned transaction(s) successfully written to file: ") << "unsigned_monero_tx";
+        success_msg_writer(true) << tr("Unsigned transaction(s) successfully written to file: ") << "unsigned_argentum_tx";
       }
     }
     else while (!ptx_vector.empty())
@@ -3054,14 +3054,14 @@ bool simple_wallet::sweep_main(uint64_t below, const std::vector<std::string> &a
     // actually commit the transactions
     if (m_wallet->watch_only())
     {
-      bool r = m_wallet->save_tx(ptx_vector, "unsigned_monero_tx");
+      bool r = m_wallet->save_tx(ptx_vector, "unsigned_argentum_tx");
       if (!r)
       {
         fail_msg_writer() << tr("Failed to write transaction(s) to file");
       }
       else
       {
-        success_msg_writer(true) << tr("Unsigned transaction(s) successfully written to file: ") << "unsigned_monero_tx";
+        success_msg_writer(true) << tr("Unsigned transaction(s) successfully written to file: ") << "unsigned_argentum_tx";
       }
     }
     else while (!ptx_vector.empty())
@@ -3193,7 +3193,7 @@ bool simple_wallet::donate(const std::vector<std::string> &args_)
      return true;
   }
   std::string ring_size_str;
-  // Hardcode Monero's donation address (see #1447)
+  // Hardcode argentum's donation address (see #1447)
   const std::string address_str = "44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A";
   std::string amount_str;
   std::string payment_id_str;
@@ -3221,7 +3221,7 @@ bool simple_wallet::donate(const std::vector<std::string> &args_)
   local_args.push_back(amount_str);
   if (!payment_id_str.empty())
     local_args.push_back(payment_id_str);
-  message_writer() << tr("Donating ") << amount_str << " XMR to The Monero Project (donate.getmonero.org/44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A).";
+  message_writer() << tr("Donating ") << amount_str << " XMR to The Argentum Project (donate.argentum.org/44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A).";
   transfer_new(local_args);
   return true;
 }
@@ -3375,7 +3375,7 @@ bool simple_wallet::sign_transfer(const std::vector<std::string> &args_)
   std::vector<tools::wallet2::pending_tx> ptx;
   try
   {
-    bool r = m_wallet->sign_tx("unsigned_monero_tx", "signed_monero_tx", ptx, [&](const tools::wallet2::unsigned_tx_set &tx){ return accept_loaded_tx(tx); });
+    bool r = m_wallet->sign_tx("unsigned_argentum_tx", "signed_argentum_tx", ptx, [&](const tools::wallet2::unsigned_tx_set &tx){ return accept_loaded_tx(tx); });
     if (!r)
     {
       fail_msg_writer() << tr("Failed to sign transaction");
@@ -3395,7 +3395,7 @@ bool simple_wallet::sign_transfer(const std::vector<std::string> &args_)
       txids_as_text += (", ");
     txids_as_text += epee::string_tools::pod_to_hex(get_transaction_hash(t.tx));
   }
-  success_msg_writer(true) << tr("Transaction successfully signed to file ") << "signed_monero_tx" << ", txid " << txids_as_text;
+  success_msg_writer(true) << tr("Transaction successfully signed to file ") << "signed_argentum_tx" << ", txid " << txids_as_text;
   return true;
 }
 //----------------------------------------------------------------------------------------------------
@@ -3407,7 +3407,7 @@ bool simple_wallet::submit_transfer(const std::vector<std::string> &args_)
   try
   {
     std::vector<tools::wallet2::pending_tx> ptx_vector;
-    bool r = m_wallet->load_tx("signed_monero_tx", ptx_vector, [&](const tools::wallet2::signed_tx_set &tx){ return accept_loaded_tx(tx); });
+    bool r = m_wallet->load_tx("signed_argentum_tx", ptx_vector, [&](const tools::wallet2::signed_tx_set &tx){ return accept_loaded_tx(tx); });
     if (!r)
     {
       fail_msg_writer() << tr("Failed to load transaction from file");
@@ -4946,10 +4946,10 @@ int main(int argc, char* argv[])
 
   const auto vm = wallet_args::main(
    argc, argv,
-   "monero-wallet-cli [--wallet-file=<file>|--generate-new-wallet=<file>] [<COMMAND>]",
+   "argentum-wallet-cli [--wallet-file=<file>|--generate-new-wallet=<file>] [<COMMAND>]",
     desc_params,
     positional_options,
-    "monero-wallet-cli.log"
+    "argentum-wallet-cli.log"
   );
 
   if (!vm)

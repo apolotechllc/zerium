@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 #include "blockchain_db/blockchain_db.h"
 #include "hardfork.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "hardfork"
+#undef ARGENTUM_DEFAULT_LOG_CATEGORY
+#define ARGENTUM_DEFAULT_LOG_CATEGORY "hardfork"
 
 using namespace cryptonote;
 

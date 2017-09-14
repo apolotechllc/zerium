@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 //
 // All rights reserved.
 //
@@ -131,10 +131,10 @@ namespace nodetool
     virtual std::map<std::string, time_t> get_blocked_hosts() { CRITICAL_REGION_LOCAL(m_blocked_hosts_lock); return m_blocked_hosts; }
   private:
     const std::vector<std::string> m_seed_nodes_list =
-    { "seeds.moneroseeds.se"
-    , "seeds.moneroseeds.ae.org"
-    , "seeds.moneroseeds.ch"
-    , "seeds.moneroseeds.li"
+    { "seeds.argentumseeds.se"
+    , "seeds.argentumseeds.ae.org"
+    , "seeds.argentumseeds.ch"
+    , "seeds.argentumseeds.li"
     };
 
     bool islimitup=false;

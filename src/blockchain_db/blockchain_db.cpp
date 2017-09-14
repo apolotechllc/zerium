@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 // 
 // All rights reserved.
 // 
@@ -46,8 +46,8 @@ static const char *db_types[] = {
   NULL
 };
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "blockchain.db"
+#undef ARGENTUM_DEFAULT_LOG_CATEGORY
+#define ARGENTUM_DEFAULT_LOG_CATEGORY "blockchain.db"
 
 using epee::string_tools::pod_to_hex;
 

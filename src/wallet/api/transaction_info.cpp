@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 //
 // All rights reserved.
 //
@@ -33,7 +33,7 @@
 
 using namespace std;
 
-namespace Monero {
+namespace Argentum {
 
 TransactionInfo::~TransactionInfo() {}
 
@@ -123,4 +123,4 @@ uint64_t TransactionInfoImpl::unlockTime() const
 
 } // namespace
 
-namespace Bitmonero = Monero;
+//namespace Bitmonero = Monero;

@@ -1,5 +1,5 @@
 //#define DBG
-// Copyright (c) 2016, Monero Research Labs
+// Copyright (c) 2017, Argentum Research Labs
 //
 // Author: Shen Noether <shen.noether@gmx.com>
 //

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
+// Copyright (c) 2017, The Argentum Project
 //
 // All rights reserved.
 //
@@ -40,8 +40,8 @@
 #include <crtdbg.h>
 #endif
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "wallet.wallet2"
+#undef ARGENTUM_DEFAULT_LOG_CATEGORY
+#define ARGENTUM_DEFAULT_LOG_CATEGORY "wallet.wallet2"
 
 // workaround for a suspected bug in pthread/kernel on MacOS X
 #ifdef __APPLE__
@@ -104,7 +104,7 @@ namespace wallet_args
     command_line::add_arg(desc_params, arg_max_concurrency);
     command_line::add_arg(desc_params, arg_config_file);
 
-    i18n_set_language("translations", "monero", lang);
+    i18n_set_language("translations", "argentum", lang);
 
     po::options_description desc_all;
     desc_all.add(desc_general).add(desc_params);
@@ -149,8 +149,8 @@ namespace wallet_args
 
     if (command_line::get_arg(vm, command_line::arg_help))
     {
-      tools::msg_writer() << "Monero '" << MONERO_RELEASE_NAME << "' (v" << MONERO_VERSION_FULL << ")" << ENDL;
-      tools::msg_writer() << wallet_args::tr("This is the command line monero wallet. It needs to connect to a monero\n"
+      tools::msg_writer() << "Argentum '" << ARGENTUM_RELEASE_NAME << "' (v" << ARGENTUM_VERSION_FULL << ")" << ENDL;
+      tools::msg_writer() << wallet_args::tr("This is the command line argentum wallet. It needs to connect to a argentum\n"
 												"daemon to work correctly.") << ENDL;
       tools::msg_writer() << wallet_args::tr("Usage:") << ENDL << "  " << usage;
       tools::msg_writer() << desc_all;
@@ -158,19 +158,19 @@ namespace wallet_args
     }
     else if (command_line::get_arg(vm, command_line::arg_version))
     {
-      tools::msg_writer() << "Monero '" << MONERO_RELEASE_NAME << "' (v" << MONERO_VERSION_FULL << ")";
+      tools::msg_writer() << "Argentum '" << ARGENTUM_RELEASE_NAME << "' (v" << ARGENTUM_VERSION_FULL << ")";
       return boost::none;
     }
 
     if(command_line::has_arg(vm, arg_max_concurrency))
       tools::set_max_concurrency(command_line::get_arg(vm, arg_max_concurrency));
 
-    tools::scoped_message_writer(epee::console_color_white, true) << "Monero '" << MONERO_RELEASE_NAME << "' (v" << MONERO_VERSION_FULL << ")";
+    tools::scoped_message_writer(epee::console_color_white, true) << "Argentum '" << ARGENTUM_RELEASE_NAME << "' (v" << ARGENTUM_VERSION_FULL << ")";
 
     if (!vm["log-level"].defaulted())
       MINFO("Setting log level = " << command_line::get_arg(vm, arg_log_level));
     else
-      MINFO("Setting log levels = " << getenv("MONERO_LOGS"));
+      MINFO("Setting log levels = " << getenv("ARGENTUM_LOGS"));
     MINFO(wallet_args::tr("Logging to: ") << log_path);
     tools::scoped_message_writer(epee::console_color_white, true) << boost::format(wallet_args::tr("Logging to %s")) % log_path;
 
