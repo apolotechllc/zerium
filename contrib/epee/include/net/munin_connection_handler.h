@@ -100,7 +100,7 @@ namespace net_utils
 		{
 		public:
 			typedef node_server_config config_type;
-      typedef connection_context_base connection_context;
+	  typedef connection_context_base connection_context;
 
 			munin_node_server_connection_handler(i_service_endpoint* psnd_hndlr, config_type& config, const connection_context_base& context):m_psnd_hndlr(psnd_hndlr), 
 												m_machine_state(http_state_retriving_comand_line), 
@@ -113,10 +113,10 @@ namespace net_utils
 
 			}
 
-      bool release_protocol()
-      {
-        return true;
-      }
+	  bool release_protocol()
+	  {
+		return true;
+	  }
 			bool after_init_connection()
 			{
 				std::string hello_str = "# munin node at ";
@@ -135,10 +135,10 @@ namespace net_utils
 				return true;
 			}
 
-      void handle_qued_callback()
-      {
+	  void handle_qued_callback()
+	  {
 
-      }
+	  }
 
 			virtual bool handle_recv(const void* ptr, size_t cb)
 			{
