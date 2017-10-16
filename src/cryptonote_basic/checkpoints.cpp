@@ -71,27 +71,25 @@ namespace cryptonote
   //---------------------------------------------------------------------------
   bool checkpoints::check_block(uint64_t height, const crypto::hash& h, bool& is_a_checkpoint) const
   {
+	auto it = m_points.find(height);
+	is_a_checkpoint = it != m_points.end();
+	if(!is_a_checkpoint)
 	  return true;
 
-	//auto it = m_points.find(height);
-	//is_a_checkpoint = it != m_points.end();
-	//if(!is_a_checkpoint)
-	//  return true;
-
-	//if(it->second == h)
-	//{
-	//  MINFO("CHECKPOINT PASSED FOR HEIGHT " << height << " " << h);
-	//  return true;
-	//}else
-	//{
-	//  MWARNING("CHECKPOINT FAILED FOR HEIGHT " << height << ". EXPECTED HASH: " << it->second << ", FETCHED HASH: " << h);
-	//  return false;
-	//}
+	if(it->second == h)
+	{
+	  MINFO("CHECKPOINT PASSED FOR HEIGHT " << height << " " << h);
+	  return true;
+	}else
+	{
+	  MWARNING("CHECKPOINT FAILED FOR HEIGHT " << height << ". EXPECTED HASH: " << it->second << ", FETCHED HASH: " << h);
+	  return false;
+	}
   }
   //---------------------------------------------------------------------------
   bool checkpoints::check_block(uint64_t height, const crypto::hash& h) const
   {
-	bool ignored;
+	bool ignored = true;
 	return check_block(height, h, ignored);
   }
   //---------------------------------------------------------------------------
