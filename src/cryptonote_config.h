@@ -122,7 +122,7 @@
 
 #define ALLOW_DEBUG_COMMANDS
 
-#define CRYPTONOTE_NAME                         "argentum1"
+#define CRYPTONOTE_NAME                         "argentum"
 #define CRYPTONOTE_POOLDATA_FILENAME            "poolstate.bin"
 #define CRYPTONOTE_BLOCKCHAINDATA_FILENAME      "data.mdb"
 #define CRYPTONOTE_BLOCKCHAINDATA_LOCK_FILENAME "lock.mdb"
@@ -148,9 +148,9 @@ namespace config
 
 	uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 18;
 	uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 19;
-	uint16_t const P2P_DEFAULT_PORT = 18080;
-	uint16_t const RPC_DEFAULT_PORT = 18081;
-	uint16_t const ZMQ_RPC_DEFAULT_PORT = 18082;
+	uint16_t const P2P_DEFAULT_PORT = 12310;
+	uint16_t const RPC_DEFAULT_PORT = 10807;
+	uint16_t const ZMQ_RPC_DEFAULT_PORT = 10605;
 	boost::uuids::uuid const NETWORK_ID = { {
 			0x41,0x52,0x47,0x45,0x4e,0x54,0x55,0x4d,0x50,0x52,0x44
 		} }; // Bender's nightmare
@@ -161,9 +161,9 @@ namespace config
 	{
 		uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 53;
 		uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 54;
-		uint16_t const P2P_DEFAULT_PORT = 28080;
-		uint16_t const RPC_DEFAULT_PORT = 28081;
-		uint16_t const ZMQ_RPC_DEFAULT_PORT = 28082;
+		uint16_t const P2P_DEFAULT_PORT = 22310;
+		uint16_t const RPC_DEFAULT_PORT = 20807;
+		uint16_t const ZMQ_RPC_DEFAULT_PORT = 20605;
 		boost::uuids::uuid const NETWORK_ID = { {
 				0x41,0x52,0x47,0x45,0x4e,0x54,0x55,0x4d,0x54,0x53,0x54
 			} }; // Bender's daydream
