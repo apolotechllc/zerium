@@ -409,10 +409,16 @@ namespace nodetool
     std::set<std::string> full_addrs;
     if (testnet)
     {
+		full_addrs.insert("192.168.32.165:22310");
+		full_addrs.insert("192.168.32.186:22310");
+		full_addrs.insert("192.168.32.187:22310");
     }
     else
     {
-    }
+		full_addrs.insert("192.168.32.165:12310");
+		full_addrs.insert("192.168.32.186:12310");
+		full_addrs.insert("192.168.32.187:12310");
+	}
     return full_addrs;
   }
 
