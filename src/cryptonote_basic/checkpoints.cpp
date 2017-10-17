@@ -72,7 +72,9 @@ namespace cryptonote
   bool checkpoints::check_block(uint64_t height, const crypto::hash& h, bool& is_a_checkpoint) const
   {
 	auto it = m_points.find(height);
+	MINFO("DEBUG (PARAMETRO): is_a_checkpoint " << is_a_checkpoint);
 	is_a_checkpoint = it != m_points.end();
+	MINFO("DEBUG (EVAL): is_a_checkpoint " << is_a_checkpoint);
 	if(!is_a_checkpoint)
 	  return true;
 
