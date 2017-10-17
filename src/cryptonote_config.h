@@ -72,11 +72,11 @@
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
 
-#define DIFFICULTY_TARGET_V2                            120  // seconds
-#define DIFFICULTY_TARGET_V1                            60  // seconds - before first fork
-#define DIFFICULTY_WINDOW                               720 // blocks
-#define DIFFICULTY_LAG                                  15  // !!!
-#define DIFFICULTY_CUT                                  60  // timestamps to cut after sorting
+#define DIFFICULTY_TARGET_V2                            60  // seconds
+#define DIFFICULTY_TARGET_V1                            30  // seconds - before first fork
+#define DIFFICULTY_WINDOW                               17 // blocks
+#define DIFFICULTY_LAG                                  8  // !!!
+#define DIFFICULTY_CUT                                  30  // timestamps to cut after sorting
 #define DIFFICULTY_BLOCKS_COUNT                         DIFFICULTY_WINDOW + DIFFICULTY_LAG
 
 
@@ -154,7 +154,7 @@ namespace config
 	boost::uuids::uuid const NETWORK_ID = { {
 			0x41,0x52,0x47,0x45,0x4e,0x54,0x55,0x4d,0x50,0x52,0x44
 		} }; // Bender's nightmare
-	std::string const GENESIS_TX = "013c01ff000180cab5ee01029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121015b6c9c53d57e60a1283edfba1d2a6510c922f351d86c7f537de64082fdb76110";
+	std::string const GENESIS_TX = "010a01ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121011cb5b993f408de6b3e5e9d47ecb7998fe0cdb8dc0df3e212f828dacc6c355a3f";
 	uint32_t const GENESIS_NONCE = 10000;
 
 	namespace testnet
@@ -167,7 +167,7 @@ namespace config
 		boost::uuids::uuid const NETWORK_ID = { {
 				0x41,0x52,0x47,0x45,0x4e,0x54,0x55,0x4d,0x54,0x53,0x54
 			} }; // Bender's daydream
-		std::string const GENESIS_TX = "013c01ff000180cab5ee01029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121015b6c9c53d57e60a1283edfba1d2a6510c922f351d86c7f537de64082fdb76110";
+		std::string const GENESIS_TX = "010a01ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101f8ed03887a421364d3f83febdc271aeb986ee515115aef095ed9ba8658db3da4";
 		uint32_t const GENESIS_NONCE = 10001;
 	}
 }
