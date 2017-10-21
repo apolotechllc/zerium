@@ -99,7 +99,7 @@ namespace cryptonote
     ss << tx_blob;
     binary_archive<false> ba(ss);
     bool r = ::serialization::serialize(ba, tx);
-    CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
+    //CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
     //tx.invalidate_hashes();
     return true;
   }
@@ -110,7 +110,7 @@ namespace cryptonote
     ss << tx_blob;
     binary_archive<false> ba(ss);
     bool r = tx.serialize_base(ba);
-    CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
+    //CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
     return true;
   }
   //---------------------------------------------------------------
@@ -120,8 +120,8 @@ namespace cryptonote
     ss << tx_blob;
     binary_archive<false> ba(ss);
     bool r = ::serialization::serialize(ba, tx);
-    CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
-    tx.invalidate_hashes();
+    //CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
+    //tx.invalidate_hashes();
     //TODO: validate tx
 
     get_transaction_hash(tx, tx_hash);
