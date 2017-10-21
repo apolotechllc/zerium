@@ -100,7 +100,7 @@ namespace cryptonote
     binary_archive<false> ba(ss);
     bool r = ::serialization::serialize(ba, tx);
     CHECK_AND_ASSERT_MES(r, false, "Failed to parse transaction from blob");
-    tx.invalidate_hashes();
+    //tx.invalidate_hashes();
     return true;
   }
   //---------------------------------------------------------------
